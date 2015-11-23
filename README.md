@@ -22,3 +22,14 @@ npm i
 ````
 ## Start ufcoder-server
 forver start node ./server.js
+
+## Usage
+#### Start server
+```
+node ./server.js
+forever start -c node ./server.js
+```
+#### How to use in browser
+```
+Demo - socketioclient.html
+```
