@@ -1,7 +1,3 @@
-sudo rmmod ftdi_sio usbserial
-sudo apt-get remove brltty
-http://www.ftdichip.com/Drivers/D2XX.htm
-
 ## Installation
 Tested under ubuntu 14.04
 #### uFR ubuntu usb workaround
