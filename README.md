@@ -2,18 +2,19 @@ sudo rmmod ftdi_sio usbserial
 sudo apt-get remove brltty
 http://www.ftdichip.com/Drivers/D2XX.htm
 
-@TODO readme
-@TODO install instruction
-@TODO install script !
-@TODO usb nosudo !
-@TODO forever
-
 ## Installation
 Tested under ubuntu 14.04
-#### uFR Driver & stuff
+#### uFR ubuntu usb workaround
 ```
 sudo ./setup.sh
 ```
+#### Allow specific user to access (read/write) usb
+You have to type username
+```
+sudo ./usb.sh
+```
+`You have to reboot system after running script, to gain effect`
+
 #### App dependencies
 ````
 sudo apt-get install npm
@@ -21,14 +22,21 @@ sudo npm i n forever -g
 sudo n latest
 npm i
 ````
-## Start ufcoder-server
-forver start node ./server.js
+
+#### Config file
+```
+cp ./config/app.example.json ./config/app.json
+```
 
 ## Usage
-#### Start server
+#### Start ufcoder-server
+Develop
+```
+forever start -c node ./server.js
+```
+Production
 ```
 node ./server.js
-forever start -c node ./server.js
 ```
 #### How handle event of read card in browser
 ```
@@ -41,6 +49,6 @@ Content-Type: application/json
 
 ```
 {
-  "Your": "json to store"
+  "Your": "JSON to store"
 }
 ```
