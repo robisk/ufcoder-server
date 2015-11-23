@@ -24,6 +24,7 @@
 
   uFCoderLib = new ffi.Library(__dirname + "/lib/" + libname, {
     "ReaderOpen": ["int", []],
+    "ReaderClose": ["int", []],
     "GetReaderType": ["int", [ref.refType('uint32')]],
     "GetCardId": ["int", [ref.refType('uint8'), ref.refType('uint32')]],
     "ReaderUISignal": ["int", ['int', 'int']],
@@ -104,6 +105,7 @@
 
     UFCoder.prototype.detectCard = function*() {
       var card, data, error, error1, error2;
+      console.log('here');
       try {
         card = (yield this.getCardId());
         if (!this.cardSnaped) {
@@ -129,6 +131,7 @@
         return this.cardSnaped = true;
       } catch (error2) {
         error = error2;
+        console.log(error);
         return this.cardSnaped = false;
       } finally {
         (yield (function(callback) {
@@ -139,6 +142,9 @@
     };
 
     UFCoder.prototype.checkStatus = function*(status) {
+      if (status === 164) {
+        (yield (this.uFCRequestQueue.add(uFCoderLib.ReaderClose, [])));
+      }
       if (status === 161) {
         (yield (this.uFCRequestQueue.add(uFCoderLib.ReaderOpen, [])));
       }

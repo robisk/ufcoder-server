@@ -13,6 +13,7 @@ CharArray = ArrayType(ref.types.char)
 
 uFCoderLib = new ffi.Library "#{__dirname}/lib/#{libname}", {
   "ReaderOpen": [ "int", [] ]
+  "ReaderClose": [ "int", [] ]
   "GetReaderType": [ "int", [ ref.refType('uint32') ] ]
   "GetCardId": [ "int", [ ref.refType('uint8'), ref.refType('uint32') ] ]
   "ReaderUISignal": [ "int", [ 'int', 'int' ] ]
@@ -70,6 +71,7 @@ class UFCoder
     co @detectCard()
 
   detectCard: () ->
+    console.log 'here'
     try
       card = yield @getCardId()
       if !@cardSnaped
@@ -88,6 +90,7 @@ class UFCoder
         console.log data
       @cardSnaped = true
     catch error
+      console.log error
       @cardSnaped = false
     finally
       yield (callback) ->
@@ -95,6 +98,8 @@ class UFCoder
       co @detectCard()
 
   checkStatus: (status) ->
+    if status == 164
+      yield ( @uFCRequestQueue.add uFCoderLib.ReaderClose, [] )
     if status == 161
       yield ( @uFCRequestQueue.add uFCoderLib.ReaderOpen, [] )
     if status != 0
