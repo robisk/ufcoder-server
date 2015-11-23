@@ -9,6 +9,7 @@ http://www.ftdichip.com/Drivers/D2XX.htm
 @TODO forever
 
 ## Installation
+Tested under ubuntu 14.04
 #### uFR Driver & stuff
 ```
 sudo ./setup.sh
@@ -29,7 +30,17 @@ forver start node ./server.js
 node ./server.js
 forever start -c node ./server.js
 ```
-#### How to use in browser
+#### How handle event of read card in browser
 ```
 Demo - socketioclient.html
+```
+#### How to write data to card
+POST http://localhost:3000/write
+
+Content-Type: application/json
+
+```
+{
+  "Your": "json to store"
+}
 ```
