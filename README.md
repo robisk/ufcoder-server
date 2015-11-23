@@ -28,11 +28,11 @@ cp ./config/app.example.json ./config/app.json
 #### Start ufcoder-server
 Develop
 ```
-forever start -c node ./server.js
+node ./server.js
 ```
 Production
 ```
-node ./server.js
+forever start -c node ./server.js
 ```
 #### How handle event of read card in browser
 ```
