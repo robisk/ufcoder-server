@@ -1,0 +1,24 @@
+{
+  "name": "ufcoder-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "co": "^4.6.0",
+    "ffi": "^2.0.0",
+    "iconv": "^2.1.11",
+    "jsonminify": "^0.2.3",
+    "koa": "^1.1.2",
+    "koa-cors": "0.0.16",
+    "koa-parse-json": "^1.0.1",
+    "koa-router": "^5.2.3",
+    "ref": "^1.2.0",
+    "ref-array": "^1.1.2",
+    "socket.io": "^1.3.7"
+  }
+}
